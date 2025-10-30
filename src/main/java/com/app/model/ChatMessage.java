@@ -31,14 +31,8 @@ public class ChatMessage extends BaseEntity {
 	Integer id;
 	String message;
 	
-	@ManyToOne
-	@JoinColumn(name = "username")
-	@NotNull
-	User user;
+	String username;
 	
-	@JsonIgnore
-	public User getUser() {
-	    return user;
-	}
+
 	
 }
