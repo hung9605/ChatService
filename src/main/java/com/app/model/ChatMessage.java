@@ -31,9 +31,8 @@ public class ChatMessage extends BaseEntity {
 	Integer id;
 	String message;
 	String username;
-	Boolean status;
+	@Builder.Default
+	Boolean status = false;
 	String toAccount;
-	
-
-	
 }
+	

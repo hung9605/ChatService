@@ -16,6 +16,8 @@ public class MessageDto {
 	
 	String username;
 	String message;
-	Boolean status;
+
+	@Builder.Default
+	Boolean status = false;
 	String toAccount;
 }
