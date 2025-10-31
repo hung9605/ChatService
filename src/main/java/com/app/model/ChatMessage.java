@@ -30,8 +30,9 @@ public class ChatMessage extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
 	String message;
-	
 	String username;
+	Boolean status;
+	String toAccount;
 	
 
 	
