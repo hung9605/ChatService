@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.constants.CommonConstant;
 import com.app.dto.MessageDto;
 import com.app.dto.NotificationMessage;
 import com.app.dto.ResponseBean;
@@ -32,8 +33,7 @@ public class ChatController extends BaseController {
 
 	   final SimpMessagingTemplate messagingTemplate;
 	   final ChatService chatService;
-
-	   //@MessageMapping("/notify")
+	   
 	   @PostMapping("/notify")
 	   public void sendNotification(@RequestBody ChatMessage chatMessage) {
 	        String username = chatMessage.getUsername();
@@ -55,10 +55,20 @@ public class ChatController extends BaseController {
 	   }
 	   
 	   @PostMapping("/addmessage")
-		public ResponseEntity<?> addMessage(@RequestBody MessageDto message){
+	   public ResponseEntity<?> addMessage(@RequestBody MessageDto message){
 			chatService.add(message);
 			return defaultResponse();
-		}
-		
-	
+	   }
+	   
+	   @MessageMapping("/private.sendMessage")
+	   public void sendPrivateMessage(MessageDto message, Principal principal) {
+		   message.setToAccount(CommonConstant.ADMIN);
+		   System.out.println("sdsdsd");
+		   chatService.add(message);
+	       messagingTemplate.convertAndSendToUser(
+	           CommonConstant.ADMIN,          
+	           "/queue/message",         
+	           message                 
+	       );
+	   }	
 }
