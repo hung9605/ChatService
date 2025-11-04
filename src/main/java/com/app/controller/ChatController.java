@@ -62,13 +62,23 @@ public class ChatController extends BaseController {
 	   
 	   @MessageMapping("/private.sendMessage")
 	   public void sendPrivateMessage(MessageDto message, Principal principal) {
-		   message.setToAccount(CommonConstant.ADMIN);
+		   
 		   System.out.println("sdsdsd");
+		   
+		   if(!message.getUsername().equals(CommonConstant.ADMIN)) {
+//	       messagingTemplate.convertAndSendToUser(
+//	           CommonConstant.ADMIN,          
+//	           "/queue/message",         
+//	           message                 
+//	       );
+//	       return;
+			   message.setToAccount(CommonConstant.ADMIN);
+	       }
 		   chatService.add(message);
-	       messagingTemplate.convertAndSendToUser(
-	           CommonConstant.ADMIN,          
-	           "/queue/message",         
-	           message                 
-	       );
+		   messagingTemplate.convertAndSendToUser(
+		           message.getToAccount(),          
+		           "/queue/message",         
+		           message                 
+		       );
 	   }	
 }
