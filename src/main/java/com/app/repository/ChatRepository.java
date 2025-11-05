@@ -19,7 +19,7 @@ public interface ChatRepository extends JpaRepository<ChatMessage, Integer> {
 		    SELECT m FROM ChatMessage m
 		    WHERE (m.username = :userA AND m.toAccount = :userB)
 		       OR (m.username = :userB AND m.toAccount = :userA)
-		    ORDER BY m.createdAt 
+		    ORDER BY m.createdAt desc 
 		""")
 		List<ChatMessage> findMessagesBetweenUsers(@Param("userA") String userA,
 		                                       @Param("userB") String userB,
