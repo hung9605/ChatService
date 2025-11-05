@@ -23,7 +23,7 @@ public class ChatServiceImpl implements ChatService {
 
 	@Override
 	public List<MessageDto> getMessageByUser(Integer page,String toAccount,String username) {
-		Pageable pageable = PageRequest.of(page, 25);
+		Pageable pageable = PageRequest.of(page, 50);
 		return messageMapper.maptoDtos(chatRepository.findMessagesBetweenUsers(toAccount,username,pageable));
 	}
 

@@ -51,7 +51,10 @@ public class ChatController extends BaseController {
 	   
 	   @GetMapping("/getMessageByCustomer/{toAccount}/{page}")
 	   public ResponseEntity<?> getMessageByCustomer(@PathVariable String toAccount,@PathVariable Integer page, Principal principal) {
+		   if(principal.getName().equals(CommonConstant.ADMIN)){
 	        return response(new ResponseBean(chatService.getMessageByUser(page,toAccount,principal.getName())));
+		   }
+		   return response(new ResponseBean(chatService.getMessageByUser(page,toAccount,CommonConstant.ADMIN)));
 	   }
 	   
 	   @PostMapping("/addmessage")
@@ -62,16 +65,7 @@ public class ChatController extends BaseController {
 	   
 	   @MessageMapping("/private.sendMessage")
 	   public void sendPrivateMessage(MessageDto message, Principal principal) {
-		   
-		   System.out.println("sdsdsd");
-		   
 		   if(!message.getUsername().equals(CommonConstant.ADMIN)) {
-//	       messagingTemplate.convertAndSendToUser(
-//	           CommonConstant.ADMIN,          
-//	           "/queue/message",         
-//	           message                 
-//	       );
-//	       return;
 			   message.setToAccount(CommonConstant.ADMIN);
 	       }
 		   chatService.add(message);
