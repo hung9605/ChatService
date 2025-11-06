@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.app.dto.UserDto;
+import com.app.dto.UserChatDto;
 import com.app.mapper.UserMapper;
 import com.app.repository.UserRepository;
 import com.app.service.UserService;
@@ -22,8 +22,8 @@ public class UserServiceImpl implements UserService {
 	final UserMapper userMapper;
 
 	@Override
-	public List<UserDto> list() {
-		return userMapper.mapToDtos(userRepository.findAll());
+	public List<UserChatDto> list() {
+		return userRepository.lstUser();
 	}
 
 }

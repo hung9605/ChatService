@@ -2,10 +2,10 @@ package com.app.service;
 
 import java.util.List;
 
-import com.app.dto.UserDto;
+import com.app.dto.UserChatDto;
 
 public interface UserService {
 	
-	List<UserDto> list();
+	List<UserChatDto> list();
 
 }
