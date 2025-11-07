@@ -7,5 +7,7 @@ import com.app.dto.UserChatDto;
 public interface UserService {
 	
 	List<UserChatDto> list();
+	
+	
 
 }

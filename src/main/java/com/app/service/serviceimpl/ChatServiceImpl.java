@@ -32,4 +32,10 @@ public class ChatServiceImpl implements ChatService {
 		return  chatRepository.save(messageMapper.maptoModel(message));
 	}
 
+	@Override
+	public int markMessagesAsRead(String from, String to) {
+		// TODO Auto-generated method stub
+		return chatRepository.markMessagesAsRead(from,to);
+	}
+
 }

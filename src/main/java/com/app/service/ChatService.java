@@ -10,5 +10,7 @@ public interface ChatService{
 	List<MessageDto> getMessageByUser(Integer page,String toAccount,String username);
 	
 	ChatMessage add(MessageDto message);
+	
+	int markMessagesAsRead(String from,String to);
 
 }

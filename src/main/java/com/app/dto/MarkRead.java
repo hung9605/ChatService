@@ -6,13 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserChatDto{
+@Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class MarkRead {
 	
-	String username;
-	String lastMessage;
-	Long unreadCount;
+	String from;
+	String to;
+
 }

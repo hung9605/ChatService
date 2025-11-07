@@ -75,4 +75,11 @@ public class ChatController extends BaseController {
 		           message                 
 		       );
 	   }	
+	   
+	   @PostMapping("/markread")
+	   public ResponseEntity<?> MarkRead(@RequestBody com.app.dto.MarkRead dto){
+			int result = chatService.markMessagesAsRead(dto.getFrom(), dto.getTo());
+			System.out.println("result "+ result);
+			return defaultResponse();
+	   }
 }
