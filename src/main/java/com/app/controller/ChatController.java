@@ -45,16 +45,18 @@ public class ChatController extends BaseController {
 	    }
 	   
 	   @GetMapping("/getMessage")
-	   public ResponseEntity<?> getMessage(Principal principal) {
+	   public ResponseEntity<?> getMessage(Principal principal,@PathVariable String page) {
 	        return response(new ResponseBean(chatService.getMessageByUser(0,principal.getName(),"noti")));
 	   }
 	   
 	   @GetMapping("/getMessageByCustomer/{toAccount}/{page}")
 	   public ResponseEntity<?> getMessageByCustomer(@PathVariable String toAccount,@PathVariable Integer page, Principal principal) {
-		   if(principal.getName().equals(CommonConstant.ADMIN)){
-	        return response(new ResponseBean(chatService.getMessageByUser(page,toAccount,principal.getName())));
-		   }
-		   return response(new ResponseBean(chatService.getMessageByUser(page,toAccount,CommonConstant.ADMIN)));
+		   String fromUser = CommonConstant.ADMIN.equals(principal.getName()) 
+		                     ? principal.getName()
+		                     : CommonConstant.ADMIN; 
+
+		   return response(new ResponseBean(chatService.getMessageByUser(page, toAccount, fromUser)));
+
 	   }
 	   
 	   @PostMapping("/addmessage")

@@ -14,5 +14,5 @@ public class UserChatDto{
 	
 	String username;
 	String lastMessage;
-	Long unreadCount;
+	Long   unreadCount;
 }
