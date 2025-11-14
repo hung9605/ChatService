@@ -54,9 +54,7 @@ public class ChatController extends BaseController {
 		   String fromUser = CommonConstant.ADMIN.equals(principal.getName()) 
 		                     ? principal.getName()
 		                     : CommonConstant.ADMIN; 
-
 		   return response(new ResponseBean(chatService.getMessageByUser(page, toAccount, fromUser)));
-
 	   }
 	   
 	   @PostMapping("/addmessage")
