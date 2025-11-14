@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.UserChatDto;
-import com.app.mapper.UserMapper;
 import com.app.repository.UserRepository;
 import com.app.service.UserService;
 
@@ -19,7 +18,6 @@ import lombok.experimental.FieldDefaults;
 public class UserServiceImpl implements UserService {
 	
 	final UserRepository userRepository;
-	final UserMapper userMapper;
 
 	@Override
 	public List<UserChatDto> list() {

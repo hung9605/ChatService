@@ -11,15 +11,18 @@ import com.app.dto.EmailRequest;
 import com.app.service.EmailService;
 
 import jakarta.mail.MessagingException;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 @RestController
 @RequestMapping("/mail")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*") 
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class MailController extends BaseController {
 	
-	  private final EmailService emailService;
+	  final EmailService emailService;
 
 	  @PostMapping("/send")
 	  public ResponseEntity<?> sendMail(@RequestBody EmailRequest request) throws MessagingException {

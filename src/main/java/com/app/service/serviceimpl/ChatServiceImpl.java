@@ -12,10 +12,13 @@ import com.app.model.ChatMessage;
 import com.app.repository.ChatRepository;
 import com.app.service.ChatService;
 
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 @Service
 @RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ChatServiceImpl implements ChatService {
 	
 	final ChatRepository chatRepository;
